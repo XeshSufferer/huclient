@@ -32,7 +32,6 @@ func (c *Client) Connect() {
 	if err != nil {
 		panic(err)
 	}
-	defer ws.Close()
 	c.Conn = ws
 
 	go func() {
@@ -58,13 +57,20 @@ func (c *Client) Connect() {
 	}()
 }
 
-func (c *Client) SendMessage(method string, args json.RawMessage) error {
-	content, err := json.Marshal(&Message{Method: method, Args: args})
+func (c *Client) SendMessage(method string, args interface{}) error {
 
+	rawArgs, err := json.Marshal(args)
 	if err != nil {
 		return err
 	}
 
+	content, err := json.Marshal(Message{Method: method, Args: rawArgs})
+
+	if err != nil {
+		return err
+	}
+	c.mu.Lock()
+	defer c.mu.Unlock()
 	c.Conn.WriteMessage(websocket.TextMessage, content)
 	return nil
 }

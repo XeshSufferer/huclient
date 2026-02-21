@@ -25,12 +25,12 @@ func NewClient(host, path string) *Client {
 	return &Client{Host: host, Path: path, handlers: make(map[string]func(*websocket.Conn, *Message)), mu: sync.Mutex{}}
 }
 
-func (c *Client) Connect() {
+func (c *Client) Connect() error {
 	connUrl := url.URL{Scheme: "ws", Host: c.Host, Path: c.Path}
 	ws, _, err := websocket.DefaultDialer.Dial(connUrl.String(), nil)
 
 	if err != nil {
-		panic(err)
+		return err
 	}
 	c.Conn = ws
 
@@ -55,6 +55,7 @@ func (c *Client) Connect() {
 			}
 		}
 	}()
+	return nil
 }
 
 func (c *Client) SendMessage(method string, args interface{}) error {

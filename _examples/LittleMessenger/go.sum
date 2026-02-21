@@ -1,0 +1,4 @@
+github.com/XeshSufferer/huclient v0.0.0-20260221013316-6a2f19bc7d90 h1:GcECeZaP4namHRu0woNvQoaGgMmFyoknIpDB2QCFoRo=
+github.com/XeshSufferer/huclient v0.0.0-20260221013316-6a2f19bc7d90/go.mod h1:nW/MK0AOqK4WrdLwi+KSxzgwkAiIoQOKaXGTTYC98VU=
+github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
+github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=

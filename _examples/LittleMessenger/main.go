@@ -26,7 +26,6 @@ func main() {
 	})
 
 	client.Connect()
-
 	fmt.Print("Enter nickname: ")
 	var nickname string
 
